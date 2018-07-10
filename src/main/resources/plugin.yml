@@ -1,0 +1,10 @@
+name: DeluxePlugins
+version: 1.0
+main: de.fusion.deluxeplugins.DeluxePlugins
+author: FusionCoding
+description: DeluxePlugins is a lightweight solution to view plugins in a better way.
+website: https://deluxenode.com/
+database: false
+commands:
+  deluxeplugins:
+    aliases: [plugins, pl]
