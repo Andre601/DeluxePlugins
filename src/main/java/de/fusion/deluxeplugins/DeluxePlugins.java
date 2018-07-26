@@ -3,7 +3,9 @@ package de.fusion.deluxeplugins;
 import co.aikar.taskchain.BukkitTaskChainFactory;
 import co.aikar.taskchain.TaskChain;
 import co.aikar.taskchain.TaskChainFactory;
+import de.fusion.deluxeplugins.commands.DeluxePluginsCommand;
 import de.fusion.deluxeplugins.config.ConfigManager;
+import de.fusion.deluxeplugins.gson.DeluxePluginsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +20,7 @@ public class DeluxePlugins extends JavaPlugin {
     private static DeluxePlugins instance;
     private static ConfigManager configuration;
     private boolean running;
+    private DeluxePluginsManager deluxePluginsManager;
     private static TaskChainFactory taskChainFactory;
 
     @Override
@@ -33,13 +36,17 @@ public class DeluxePlugins extends JavaPlugin {
 
         File config = new File(getDataFolder(), "config.yml");
         if (!getDataFolder().exists()) getDataFolder().mkdir();
+        if (!new File(getDataFolder() + "//plugins").exists()) new File(getDataFolder() + "//plugins").mkdir();
         if (!config.exists())
             saveResource("config.yml", true);
         configuration = new ConfigManager(config).build();
         log("Loaded DeluxePlugins by FusionCoding");
-
-
         PluginManager pm = Bukkit.getPluginManager();
+
+        deluxePluginsManager = new DeluxePluginsManager();
+        deluxePluginsManager.checkPlugins();
+
+        getCommand("deluxeplugins").setExecutor(new DeluxePluginsCommand());
     }
 
     @Override
@@ -47,7 +54,6 @@ public class DeluxePlugins extends JavaPlugin {
         super.onDisable();
         running = false;
     }
-
 
     public void log(String message) {
         Bukkit.getConsoleSender().sendMessage(getPrefix() + message);
@@ -77,5 +83,7 @@ public class DeluxePlugins extends JavaPlugin {
         return taskChainFactory.newSharedChain(name);
     }
 
-
+    public DeluxePluginsManager getDeluxePluginsManager() {
+        return deluxePluginsManager;
+    }
 }

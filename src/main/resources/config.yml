@@ -10,7 +10,26 @@
 #
 # Author: FusionCoding
 # Version: 1.0
-# State: ALPHA
+# State: RELEASE
 #
 General:
  Prefix: "&bDeluxe&7Plugins \xbb &7"
+ Plugin:
+   Layout: "&7%displayname% - %pluginversion% / %author%"
+   DetailedLayout:
+     - ""
+     - "&7Name: %displayname%"
+     - "&7Version: %pluginversion%"
+     - "&7Author(s): %authors%"
+     - "&7Category: %category%"
+     - "  &8\xbb &b%description%"
+     - ""
+   Hover: "&aClick to view more informations."
+   CategoryLayout: "&7\xbb %category%"
+   UnknownPlugin: "§cThis plugin is not installed on this server."
+
+
+Categories:
+  Private: "&8Private"
+  Premium: "&6Premium"
+  Free: "&7Free"

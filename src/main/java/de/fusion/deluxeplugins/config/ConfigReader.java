@@ -1,6 +1,7 @@
 package de.fusion.deluxeplugins.config;
 
 import java.util.List;
+import org.bukkit.configuration.ConfigurationSection;
 
 public interface ConfigReader {
 
@@ -16,5 +17,9 @@ public interface ConfigReader {
     List<?> getList();
 
     Object getObject();
+
+    String getStringList();
+
+    ConfigurationSection getConfigSection();
 
 }
